@@ -1,0 +1,112 @@
+<div class="card-container emblem">
+  <div class="card mb-0" style="background-image: url('{{player.emblem}}'), url('{{player.background[0]}}'); background-repeat: no-repeat, no-repeat; background-position: left, right; background-size: 65px 65px, 100% 65px; height: 65px;">
+    <div class="front p-0">
+      <!--<img class="img-responsive" ng-src="{{player.emblem || ''}}" style="height: 65px; position: absolute;">-->
+      <p class="large hidden-xs">
+        <span>{{player.name}}</span>
+        <span ng-show="player.stats.killsDeathsRatio" class="right">K/D: {{player.stats.killsDeathsRatio.basic.displayValue}}</span>
+      </p>
+      <p class="large visible-xs">
+        <span>{{player.name}}</span>
+        <span ng-show="player.stats.killsDeathsRatio" class="right">{{player.stats.killsDeathsRatio.basic.displayValue}}</span>
+      </p>
+      <p class="hidden-xs">
+        <span ng-show="player.level && player.class.name">Level {{player.level}} {{player.class.name}}</span>
+        <span ng-show="player.stats.activitiesEntered" class="right">Win Avg: {{((player.stats.activitiesWon.basic.value/player.stats.activitiesEntered.basic.value)*100).toFixed(0)}}%</span>
+      </p>
+      <p class="visible-xs">
+        <span ng-show="player.level && player.class.name">{{player.level}} {{player.class.name}}</span>
+        <span ng-show="player.stats.activitiesEntered" class="right">Win: {{((player.stats.activitiesWon.basic.value/player.stats.activitiesEntered.basic.value)*100).toFixed(0)}}%</span>
+      </p>
+    </div>
+    <div class="back">
+      <div class="col-md-12 col-xs-12">
+        <div class="col-md-6 col-xs-6" ng-repeat="classNode in player.classNodes">
+          <a href="" class="icon icon-white m-0" style="margin-top: 4px!important;margin-right: 5px!important;width: 25px;height:25px;"
+             popover="{{classNode.description}}"
+             popover-trigger="mouseenter">
+            <img class="img-responsive" ng-src="{{classNode.icon || ''}}">
+          </a>
+          <span class="text-left text-sm text-white" style="top: 10px;position: absolute;">{{classNode.name}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-4 col-sm-4 col-xs-4 pl-0 pr-0" style="border-right: #616f77 1px solid;">
+      <progressbar popover="Intellect: {{player.int}}" popover-trigger="mouseenter" class="progress-sm not-rounded m-0 bg-success lt" max="270" type="greensea" value="player.int"></progressbar>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-4 pl-0 pr-0" style="border-right: #616f77 1px solid;">
+      <progressbar popover="Discipline: {{player.dis}}" popover-trigger="mouseenter" class="progress-sm not-rounded bg-primary lter m-0" max="270" value="player.dis"></progressbar>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-4 pl-0 pr-0">
+      <progressbar popover="Strength: {{player.str}}" popover-trigger="mouseenter" class="progress-sm not-rounded m-0 bg-warning lt" max="270" type="warning" value="player.str"></progressbar>
+    </div>
+  </div>
+</div>
+<div class="mb-0">
+  <span class="streak"
+        ng-repeat="str in player.pastActivities track by $index"
+        ng-class="str.standing === 0 ? 'win' : 'lose'"
+        popover="K/D: {{str.kd}} with {{str.kills}} kills"
+        popover-title="{{str.date | date : format : medium}}"
+        popover-trigger="mouseenter" >•</span>
+  <span class="right" ng-show="player.lighthouse === false && !player.neverTrials">Never Flawless</span>
+  <span class="right" ng-show="player.lighthouse === true">Flawless</span>
+  <p class="text-center mb-0" ng-show="player.neverTrials">No previous trials games</p>
+</div>
+<div class="row ml-0 mr-0" style="height: 130px;" ng-repeat="weapon in [player.weapons.BUCKET_PRIMARY_WEAPON,
+                  player.weapons.BUCKET_SPECIAL_WEAPON, player.weapons.BUCKET_HEAVY_WEAPON] track by $index">
+  <div class=" col-md-4 col-xs-4 pt-10">
+    <div class="card mb-0">
+      <div class="front p-0">
+        <img popover="{{weapon.name}}" popover-trigger="mouseenter"
+          class="img-responsive weapon-img {{weapon.burnColor || 'kinetic-dmg'}}"
+          ng-src="{{weapon.icon}}" alt="{{weapon.name}}">
+      </div>
+      <!--<div class="back bg-greensea">-->
+        <!--<div class="col-md-12">-->
+          <!--<p class="text-center pt-10 text-sm">{{weapon.name}}</p>-->
+          <!--<p ng-show="player.stats" class="text-center text-sm">PGA: {{getWeaponKills(weapon.subType, player)}}</p>-->
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+  </div>
+  <div class="col-md-8 col-xs-8 pt-10">
+    <div class="row">
+      <div class="col-md-3 col-xs-3 pl-0">
+        <div class="col-md-6 col-xs-6" ng-repeat="node in weapon.nodes" ng-show="node.name">
+          <a href="" class="icon icon-default" style="margin: 0px;width: 22px;height: 22px;"
+             popover="{{node.description}}"
+             popover-trigger="mouseenter">
+            <img class="img-responsive" ng-src="{{node.icon || ''}}">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-9 col-xs-9 pl-0">
+        <div class="col-md-12 col-xs-12" ng-repeat="node in weapon.nodes" ng-show="node.name">
+          <p class="text-left text-sm">{{node.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row ml-0 mr-0">
+  <div class="col-md-3 col-xs-3" ng-repeat="armor in [player.armors.BUCKET_HEAD, player.armors.BUCKET_ARMS,
+                  player.armors.BUCKET_CHEST, player.armors.BUCKET_LEGS] track by $index">
+    <div class="card">
+      <div class="front p-0">
+        <img popover="{{armor.name}}" popover-trigger="mouseenter"
+          class="img-responsive" ng-src="{{armor.icon}}">
+      </div>
+      <!--<div class="back bg-greensea">-->
+        <!--<div class="col-md-12 col-xs-12">-->
+          <!--<p class="text-center text-xs pt-10">{{armor.name}}</p>-->
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>

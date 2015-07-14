@@ -1,0 +1,8 @@
+node_modules
+.tmp
+.sass-cache
+.DS_STORE
+bower_components
+heroku
+dist
+/.idea

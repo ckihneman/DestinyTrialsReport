@@ -1,0 +1,161 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "bourbon/dist/_bourbon.scss";
+// endbower
+// My variables, mixins and colors
+@import "inc/mixins"; // main mixins
+@import "inc/colors"; // colors variables
+@import "inc/variables"; // other variables
+
+// Vendor
+
+//Pages
+@import "pages/global"; // global page settings
+@import "pages/tree"; // file tree settings
+//@import "pages/chat"; // chat page settings
+@import "pages/mail"; // mail page settings
+@import "pages/search_results"; // search results page settings
+
+//Layouts
+@import "layouts/boxed"; // boxed layout
+@import "layouts/hz-menu"; // horizontal menu
+@import "layouts/rtl"; // rtl layout
+
+// Sections
+@import "sections/content"; // content section
+@import "sections/header"; // header section
+@import "sections/nav"; // navigation section
+@import "sections/nav-min"; // navigation sm/xs
+@import "sections/page-header"; // page header section
+@import "sections/rightbar"; // rightbar section
+@import "sections/page-loader"; // page loader
+@import "sections/add-nav"; // additional navbar under breadcrumbs
+
+// Components
+@import "components/tiles"; // tiles
+@import "components/form-elements"; // form elements
+@import "components/ui-elements"; // ui elements
+@import "components/dropdowns"; // dropdowns
+@import "components/charts"; // charts
+@import "components/buttons"; // buttons
+@import "components/icons";  // icons
+@import "components/lists"; // lists
+@import "components/media"; // media
+@import "components/thumbnails"; // thumbnails
+@import "components/typography"; // typography
+@import "components/loading-bar"; // loading bar
+@import "components/daterangepicker"; // daterangepicker
+@import "components/alerts-notifications"; // alerts and notifications
+@import "components/tabs-pills"; // tabs and pills
+@import "components/modals"; // modals
+@import "components/portlets"; // portlets
+@import "components/progress"; // progress bars
+@import "components/tbox"; // table layout
+@import "components/tree"; // file tree
+@import "components/chosen"; // chosen plugin
+@import "components/tables"; // tables
+@import "components/cards"; // two sided cards
+@import "components/carousel"; // carousel
+@import "components/widgets"; // widgets
+@import "components/streamline"; // streamline
+@import "components/maps"; // maps
+@import "components/calendar"; // calendar
+@import "components/gallery"; // gallery
+
+// Shared
+@import "shared/global"; // global shared settings
+@import "shared/color-schemes"; // color schemes
+@import "shared/print"; // print css
+@import "shared/animations"; // animations
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+body {
+  padding: 0;
+}
+
+.streak {
+  font-size: 50px;
+  line-height: 20px;
+}
+.win {
+  color: #cdd100;
+}
+.lose {
+  color: #c50000;
+}
+
+.emblem {
+  p {
+    margin: 0 0 10px 70px;
+    color: white;
+  }
+  p.large {
+    font-size: 20px;
+  }
+}
+span.right {
+  float: right;
+  padding-right: 15px;
+}
+.card-container {
+  .card {
+    min-height: 0 !important;
+  }
+}
+
+img.weapon-img {
+  border: 5px solid;
+}
+img.solar-dmg {
+  border-color: #d9534f;
+}
+img.arc-dmg {
+  border-color: #5bc0de;
+}
+img.void-dmg {
+  border-color: #cd97eb;
+}
+img.kinetic-dmg {
+  border-color: #969597;
+}
+
+.onoffswitch-label {
+  border-radius: 0;
+}
+.onoffswitch.labeled {
+  width: 66px;
+  float: left;
+  height: 33px;
+  .onoffswitch-inner:after {
+    content: "XBL";
+    padding-right: 7px;
+    background-color: rgb(0, 116, 5);
+    color: #FFFFFF;
+    border-radius: 0;
+    height: 33px;
+    line-height: 33px;
+    font-size: 11px;
+  }
+  .onoffswitch-inner:before {
+    line-height: 33px;
+    font-size: 11px;
+    content: "PSN";
+    padding-left: 7px;
+    background-color: rgb(44, 56, 193);
+    color: #FFFFFF;
+    border-radius: 0;
+    height: 33px;
+  }
+  .onoffswitch-switch {
+    right: 41px;
+    border-radius: 0;
+  }
+
+}

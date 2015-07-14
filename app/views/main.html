@@ -1,0 +1,77 @@
+<div class="header">
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 mt-20 mb-20">
+          <form class="form-horizontal" role="form" ng-submit="searchPlayerbyName(mainPlayer, platformValue)">
+            <div class="onoffswitch labeled">
+              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch09" ng-model="platformValue" checked="">
+              <label class="onoffswitch-label" for="switch09">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+              </label>
+            </div>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Enter a Guardian's name" ng-model="mainPlayer">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Search</button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-show="status">
+  <div class="text-center alert alert-warning">
+    <strong>{{status}}</strong>
+  </div>
+</div>
+
+<div class="container" ng-hide="status">
+  <div class="row">
+    <div class="col-md-4 col-xs-12" ng-show="fireteam[0].name" ng-repeat="player in fireteam track by $index">
+      <div class="row">
+        <div ng-show="$index === 0" class="col-md-12">
+          <button class="btn btn-block btn-default" type="button" ng-click="suggestRecentPlayers()">Suggest Recent Players</button>
+        </div>
+        <div class="col-md-12" ng-hide="$index === 0">
+          <form class="form-horizontal" role="form" ng-submit="getPlayerbyName(firstMember, ($index))">
+            <div class="input-group">
+              <div ng-show="recentPlayers" class="input-group-btn">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuMobile{{($index)}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Recent Players
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuMobile{{$index}}">
+                  <li ng-repeat="player in recentPlayers track by $index"><a ng-click="getRecentPlayer(player, ($parent.$index))">{{player.name}}</a></li>
+                </ul>
+              </div>
+              <input type="text" class="form-control" placeholder="Search for..." ng-model="firstMember">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Search</button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row" style="height: 20px;">
+        <div class="col-md-12 col-sm-12">
+          <span class="label bg-danger" style="margin-right: 2px" ng-repeat="hazard in player.weapons.hazards.concat(player.armors.hazards, player.classNodes.hazards) track by $index">{{hazard}}</span>
+          <!--<span class="label bg-danger" ng-repeat="hazard in player.weapons.hazards track by $index">{{hazard}}</span>
+          <span class="label bg-danger" ng-repeat="hazard in player.armors.hazards track by $index">{{hazard}}</span>
+          <span class="label bg-danger" ng-repeat="hazard in player.classNodes.hazards track by $index">{{hazard}}</span>-->
+        </div>
+      </div>
+
+      <section class="tile tile-simple">
+        <div class="tile-body bg-tr-black lt p-0">
+          <ng-include src="'views/player.html'"></ng-include>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
